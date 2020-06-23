@@ -1,0 +1,194 @@
+
+body {
+    background-color: #242E4C;
+    margin: 0;
+    border: 0;
+    box-sizing: border-box;
+}
+
+.container {
+    width: 1130px;
+    max-width: 90%;
+    margin: auto;
+    display: grid;
+    padding: 10px;
+}
+
+button {
+    background-color: #97A5CE;
+    width: 170px;
+    height: 40px;
+    border: none;
+    border-radius: 8px;
+    margin: 20px 0;
+    color: #EBEBF2;
+    font-weight: bold;
+    font-size: 16px;
+    cursor: pointer;
+    text-transform: uppercase;
+    transition: 400ms;
+}
+
+button:hover {
+    background-color: #7B86A8;
+}
+
+.top-header {
+    display: flex;
+    justify-content: space-between;
+    margin: 40px 0;
+}
+
+.top-header .search {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.top-header .search i {
+    margin-right: 15px;
+    color: #97A5CE;
+}
+
+.top-header .search input {
+    width: 150px;
+    height: 40px;
+    margin: 20px 0;
+    text-align: center;
+    background-color: #242E4C;
+    border: none;
+    border-bottom: solid 2px #1C2540;
+}
+
+
+header .content {    
+    border-bottom: solid 2px #1C2540;
+}
+
+header .content,
+main .content {
+    display: grid;
+    grid-template-columns: 10% 20% 1fr 1fr;
+    gap: 20px;
+    align-items: center;
+    color: #97A5CE;
+    text-align: center;
+}
+
+main .content {
+    color: #EBEBF2;
+}
+
+#modal.hide {
+    display: none;
+}
+
+
+#modal {
+    background-color: #242E4C ;
+    /* posicionando o modal por cima do conteúdo principal */
+    position: fixed;
+    top: 0;
+    bottom: 0;
+    right: 0;
+    left: 0;
+
+    display: flex;
+    justify-content: center;
+
+    transition: 400ms;
+}
+
+#modal .add_production {
+    margin-top: 8px;
+    color: #EBEBF2;
+}
+
+#modal .add_production h1 {
+    margin-bottom: 80px;
+    text-align: center;
+    text-transform: uppercase;
+}
+
+#modal form {
+    width: 100%;
+    max-width: 1200px;
+    margin: 0 auto;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 20px
+}
+
+#modal .input-wrapper {
+    display: flex;
+    flex-direction: column;
+}
+
+#modal .input-wrapper label {
+    font-size: 18px;
+    margin-bottom: 10px;
+}
+#modal .input-wrapper input,
+#modal .input-wrapper select {
+    background-color: #242E4C;
+    border: 1px solid #1C2540;
+    padding: 10px 5px;
+    color: #97A5CE;
+}
+
+form a {
+    background-color: #1C2540;
+    color: #EBEBF2;
+    text-decoration: none;
+    font-weight: 500;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 170px;
+    height: 40px;
+    align-self: center;
+    border-radius: 8px;
+}
+
+form button {
+    grid-column: 2;
+    justify-self: end;
+}
+
+
+@media (max-width: 900px){
+    .top-header{
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+    }
+
+    header .content,
+    main .content {
+        grid-template-columns: 1fr 1fr 1fr 1fr;
+    }
+
+    #modal .add_production {
+        max-width: 90%;
+        margin: 0 auto;
+    }
+
+    #modal form {
+        display: flex;
+        flex-direction: column;
+    }
+
+    #modal form button {
+        align-self: center;
+    }
+
+    #modal form .input-wrapper {
+        margin-bottom: 20px;
+    }
+
+    form .form-footer a,
+    form .form-footer button {
+        width: 150px;
+        height: 40px;
+    }
+}
