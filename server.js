@@ -41,7 +41,21 @@ nunjucks.configure("views", {
 
 //  criação de rota /
 server.get("/", function(req, res){
-    return res.render("index.html", { contents })
+    const reversedContent = [...contents].reverse()
+
+    let lastContents = []
+    for (content of reversedContent){
+        if(lastContents.length < 10){
+            lastContents.push(content)
+        }
+    }
+
+
+    return res.render("index.html", { contents: lastContents })
+})
+
+server.get("/latest_pasta", function(req,res){
+    return res.render("latest_pasta.html", { contents })
 })
 
 // server rodando na porta 3000

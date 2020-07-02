@@ -14,8 +14,14 @@ body {
     padding: 10px;
 }
 
+.top-header button,
+.top-header a,
 button {
-    background-color: #97A5CE;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-decoration: none;
+    background-color: #1C2540;
     width: 170px;
     height: 40px;
     border: none;
@@ -29,13 +35,15 @@ button {
     transition: 400ms;
 }
 
-button:hover {
+.top-header button:hover,
+.top-header a:hover {
     background-color: #7B86A8;
 }
 
 .top-header {
     display: flex;
     justify-content: space-between;
+    align-items: center;
     margin: 40px 0;
 }
 
