@@ -8,3 +8,6 @@ function onOff(){
 document
     .querySelector("#modal a")
     .addEventListener("click", onOff)
+
+
+// VALIDAÇÃO FORMULARIO

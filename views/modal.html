@@ -2,41 +2,22 @@
     <div class="add_production">
         <h1>Adicionar nova massa</h1>
 
-        <form action="/" method="POST">
+        <form action="/" method="POST" onsubmit="return checkFields(event)">
             <div class="input-wrapper">
                 <label for="number">Número da massa</label>
                 <input type="number" name="number">
             </div>
             <div class="input-wrapper">
                 <label for="type">Tipo da massa</label>
-                <select name="type">
-                    <option value="0">Selecione o Tipo</option>
-                    <option value="1">6h</option>
-                    <option value="2">12h</option>
-                    <option value="3">6h 60g</option>
-                    <option value="4">12h 60g</option>
-                    <option value="5">18h</option>
-                    <option value="6">Doce 6h</option>
-                    <option value="7">Doce 12h</option>
-                    <option value="7">Doce 12h Modelado</option>
-                </select>
+                <input type="text" name="type">
             </div>
             <div class="input-wrapper">
-                <label for="number">Cilindro</label>
-                <select name="type">
-                    <option value="0">Selecione o Funcionário</option>
-                    <option value="1">Artur</option>
-                    <option value="2">Davidson</option>
-                    <option value="3">Ernando</option>
-                    <option value="4">Fábio</option>
-                    <option value="5">Matheus</option>
-                    <option value="6">Ricardo</option>
-                    <option value="7">Waldson</option>
-                </select>
+                <label for="name">Cilindro</label>
+                <input type="text" name="name">
             </div>
             <div class="input-wrapper">
-                <label for="number">Data</label>
-                <input type="date">
+                <label for="date">Data</label>
+                <input type="text" name="date">
             </div>
 
             <a href="#">Voltar</a>

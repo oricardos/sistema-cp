@@ -3,38 +3,11 @@ const express = require("express")
 const server = express()
 const db = require("./db")
 
-const contents = [
-    {
-        number: "01",
-        type: "06h",
-        name: "Artur",
-        date: "20/06/2020"
-    },
-    {
-        number: "02",
-        type: "06h",
-        name: "Artur",
-        date: "20/06/2020"
-    },
-    {
-        number: "03",
-        type: "06h",
-        name: "Artur",
-        date: "20/06/2020"
-    },
-    {
-        number: "04",
-        type: "06h",
-        name: "Ernando",
-        date: "20/06/2020"
-    }
-]
-
 // configurar arquivos estáticos
 server.use(express.static("public"))
 
 // habilitar o uso do req.body
-server.use(express.urlencoded({ extended: true}))
+server.use(express.urlencoded({ extended: true }))
 
 // configurações nunjucks
 const nunjucks = require("nunjucks")

@@ -45,7 +45,7 @@ db.serialize(function () {
     // })
     
     // Deletar um dado da tabela
-    // db.run(`DELETE FROM contents WHERE id = ?`, [1], function(err) {
+    // db.run(`DELETE FROM contents WHERE id = ?`, [13], function(err) {
     //     if (err) return console.log(err)
 
     //     console.log("DADOS DELETADOS!", this)
