@@ -1,17 +1,13 @@
 'use strict';
 
-console.log('Hello World');
-
 const openModal = () => document.querySelector('.modal').classList.add('active');
-const closeModal = () => document.querySelector('.modal').classList.remove('active');
+const closeModal = () => {
+    clearFields();
+    document.querySelector('.modal').classList.remove('active');
+};
+const form = ['name', 'email', 'phone', 'city'];
 
-const tempClient = {
-    name: 'luizao',
-    email: 'teste@email.com',
-    phone: '011-98888-9999',
-    city: 'BH',
-}
-
+const client = {}
 
 //CRUD
 
@@ -36,13 +32,38 @@ const updateClient = (index, client) => {
 }
 
 //DELETE
-const deleteClient = (index) =>  {
+const deleteClient = (index) => {
     const delClient = readClient();
     delClient.splice(index, 1)
     setItemsFromLocalStorage(delClient)
     console.log(delClient)
 }
 
+//Add interação com layout
+const isValidFields = () => {
+    return document.getElementById('form').reportValidity()
+}
+
+const clearFields = () => {
+    return form.map(field => document.getElementById(field).value = '');
+}
+
+const handleSubmit = (evt) => {
+    if (isValidFields()) {
+        evt.preventDefault();
+
+        form.map(field => {
+            const inputFieldValue = document.getElementById(field).value;
+            return client[field] = inputFieldValue
+        });
+
+        createClient(client);
+        closeModal();
+    }
+}
+
 //Event Listeners
 document.getElementById('cadastrarCliente').addEventListener('click', openModal);
-document.getElementById('modalClose').addEventListener('click', closeModal)
+document.getElementById('modalClose').addEventListener('click', closeModal);
+document.getElementById('save').addEventListener('click', handleSubmit);
+document.getElementById('cancel').addEventListener('click', closeModal);
