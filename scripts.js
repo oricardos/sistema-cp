@@ -58,9 +58,40 @@ const handleSubmit = (evt) => {
         });
 
         createClient(client);
+        updateScreen();
         closeModal();
     }
 }
+
+const createTableRow = (client) => {
+    const newRow = document.createElement('tr');
+    newRow.innerHTML = `
+        <td>${client.name}</td>
+        <td>${client.email}</td>
+        <td>${client.phone}</td>
+        <td>${client.city}</td>
+        <td>
+            <button type="button" class="button green">Editar</button>
+            <button type="button" class="button red">Excluir</button>
+        </td>
+    `
+    document.getElementById('tbody').appendChild(newRow);
+}
+
+const clearTable = () => {
+    const rows = document.querySelectorAll('#tbody > tr');
+    rows.forEach(row => {
+        row.parentNode.removeChild(row) //remove o tr
+    })
+}
+
+const updateScreen = () => {
+    const dbClient = readClient();
+    clearTable()
+    dbClient.forEach(createTableRow);
+}
+
+updateScreen();
 
 //Event Listeners
 document.getElementById('cadastrarCliente').addEventListener('click', openModal);
