@@ -38,15 +38,26 @@ function App() {
   const [visible, setVisible] = useState(false);
   const handleModal = () => setVisible(true);
   const handleCloseModal = () => setVisible(false);
-  const [data, setData] = useState();
+  const [data, setData] = useState({
+    name: "",
+    email: "",
+    phone: "",
+    city: "",
+  });
+
+  const getItemsFromLocalStorage = () =>
+    JSON.parse(localStorage.getItem("clients")) || [];
+  const setItemsFromLocalStorage = (value) =>
+    localStorage.setItem("clients", JSON.stringify(value));
 
   const handleChange = (evt) => {
-    const data = evt.target.value;
-    setData({ data });
+    const value = evt.target.value;
+    setData({ ...data, value });
   };
 
   const handleSubmit = (evt) => {
     evt.preventDefault();
+    setItemsFromLocalStorage(data);
     console.log(data);
   };
 
