@@ -1,36 +1,15 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { Button, Container, Grid, Input, Modal, Text } from "@nextui-org/react";
 import DataTable from "react-data-table-component";
 
 const columns = [
   {
-    name: "Nome",
-    selector: (row) => row.title,
+    name: "id",
+    selector: (row) => row.name,
   },
   {
-    name: "Email",
-    selector: (row) => row.year,
-  },
-  {
-    name: "Telefone",
-    selector: (row) => row.year,
-  },
-  {
-    name: "Cidade",
-    selector: (row) => row.year,
-  },
-];
-
-const datas = [
-  {
-    id: 1,
-    title: "Beetlejuice",
-    year: "1988",
-  },
-  {
-    id: 2,
-    title: "Ghostbusters",
-    year: "1984",
+    name: "name",
+    selector: (row) => row.email,
   },
 ];
 
@@ -38,27 +17,64 @@ function App() {
   const [visible, setVisible] = useState(false);
   const handleModal = () => setVisible(true);
   const handleCloseModal = () => setVisible(false);
-  const [data, setData] = useState({
-    name: "",
-    email: "",
-    phone: "",
-    city: "",
-  });
+  const [data, setData] = useState([
+    {
+      name: "",
+      email: "",
+      phone: "",
+      city: "",
+    },
+  ]);
 
-  const getItemsFromLocalStorage = () =>
-    JSON.parse(localStorage.getItem("clients")) || [];
+  useEffect(() => {
+    const url = "https://jsonplaceholder.typicode.com";
+
+    fetch(`${url}/users`)
+      .then((response) => response.json())
+      .then((res) => {
+        console.log(res);
+      });
+
+    const getItemsFromLocalStorage = () =>
+      JSON.parse(localStorage.getItem("clients")) || [];
+
+    setData(getItemsFromLocalStorage());
+    console.log(getItemsFromLocalStorage());
+  }, []);
+
   const setItemsFromLocalStorage = (value) =>
     localStorage.setItem("clients", JSON.stringify(value));
 
-  const handleChange = (evt) => {
-    const value = evt.target.value;
-    setData({ ...data, value });
+  let datatableData = {
+    title: "Teste",
+    columns: [
+      {
+        name: "Name",
+        selector: (row) => row.name,
+      },
+      {
+        name: "email",
+        selector: (row) => row.email,
+      },
+      {
+        name: "phone",
+        selector: (row) => row.phone,
+      },
+      {
+        name: "city",
+        selector: (row) => row.city,
+      },
+    ],
   };
 
-  const handleSubmit = (evt) => {
+  const handleChange = (evt) => {
+    let value = evt.target.value;
+    setData({ ...data, [evt.target.name]: value });
+  };
+
+  const handleSubmit = (evt, index) => {
     evt.preventDefault();
     setItemsFromLocalStorage(data);
-    console.log(data);
   };
 
   return (
@@ -84,6 +100,7 @@ function App() {
           <Grid.Container gap={2} justify="center">
             <Grid xs={12} md={6}>
               <Input
+                name="name"
                 required
                 clearable
                 bordered
@@ -97,6 +114,7 @@ function App() {
             </Grid>
             <Grid xs={12} md={6}>
               <Input
+                name="email"
                 required
                 clearable
                 bordered
@@ -110,6 +128,7 @@ function App() {
             </Grid>
             <Grid xs={12} md={6}>
               <Input
+                name="phone"
                 required
                 clearable
                 bordered
@@ -123,6 +142,7 @@ function App() {
             </Grid>
             <Grid xs={12} md={6}>
               <Input
+                name="city"
                 required
                 clearable
                 bordered
@@ -146,7 +166,7 @@ function App() {
         </Modal.Footer>
       </Modal>
 
-      <DataTable columns={columns} data={datas} />
+      {/*<DataTable columns={datatableData} data={data} />*/}
     </Container>
   );
 }
