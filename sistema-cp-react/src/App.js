@@ -26,25 +26,34 @@ function App() {
     },
   ]);
 
-  useEffect(() => {
-    const url = "https://jsonplaceholder.typicode.com";
-
-    fetch(`${url}/users`)
-      .then((response) => response.json())
-      .then((res) => {
-        console.log(res);
-      });
-
-    const getItemsFromLocalStorage = () =>
-      JSON.parse(localStorage.getItem("clients")) || [];
-
-    setData(getItemsFromLocalStorage());
-    console.log(getItemsFromLocalStorage());
-  }, []);
+  const getItemsFromLocalStorage = () =>
+    JSON.parse(localStorage.getItem("clients")) || [];
 
   const setItemsFromLocalStorage = (value) =>
     localStorage.setItem("clients", JSON.stringify(value));
 
+  //CREATE
+  const createClient = (client) => {
+    const db_client = getItemsFromLocalStorage();
+    db_client.push(client);
+    setItemsFromLocalStorage(db_client);
+  };
+  //Read
+  const readClient = () => getItemsFromLocalStorage();
+
+  //Delete
+  const updateClient = (index, client) => {
+    const updtClient = readClient();
+    updtClient[index] = client;
+    setItemsFromLocalStorage(updtClient);
+  };
+
+  const deleteClient = (index) => {
+    const delClient = readClient();
+    delClient.splice(index, 1);
+    setItemsFromLocalStorage(delClient);
+    updateClient();
+  };
   let datatableData = {
     title: "Teste",
     columns: [
