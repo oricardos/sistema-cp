@@ -1,4 +1,6 @@
-'use strict';
+$(document).ready(function() {
+    $('#example').DataTable();
+} );
 
 const openModal = () => document.querySelector('.modal').classList.add('active');
 const closeModal = () => {
